@@ -20,6 +20,7 @@
         "attemptsPerCombination": {
             "title": "Attempts per target and proxy",
             "type": "integer",
+            "description": "How many plain requests to make for each target and proxy group.",
             "minimum": 1,
             "maximum": 5,
             "default": 2
