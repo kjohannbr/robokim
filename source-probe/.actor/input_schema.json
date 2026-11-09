@@ -1,0 +1,29 @@
+{
+    "title": "Source probe input",
+    "description": "Leave everything empty to test the built-in list of candidate sources.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "targets": {
+            "title": "Targets",
+            "type": "array",
+            "description": "Optional. List of {\"label\", \"url\", \"expect\"} objects. Empty = built-in candidate list.",
+            "editor": "json"
+        },
+        "proxyGroups": {
+            "title": "Proxy groups",
+            "type": "array",
+            "description": "Proxy groups to test: DATACENTER, RESIDENTIAL, GOOGLE_SERP, NONE.",
+            "editor": "stringList",
+            "default": ["DATACENTER", "RESIDENTIAL", "GOOGLE_SERP"]
+        },
+        "attemptsPerCombination": {
+            "title": "Attempts per target and proxy",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5,
+            "default": 2
+        }
+    },
+    "required": []
+}

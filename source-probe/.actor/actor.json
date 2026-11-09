@@ -1,0 +1,10 @@
+{
+    "actorSpecification": 1,
+    "name": "source-probe",
+    "title": "Source probe",
+    "description": "Internal tool: checks which candidate data sources answer plain requests through each Apify Proxy group.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "input": "./input_schema.json",
+    "dockerfile": "../Dockerfile"
+}

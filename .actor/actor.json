@@ -1,17 +1,11 @@
 {
     "actorSpecification": 1,
-    "name": "google-trends-scraper",
-    "title": "Google Trends Scraper & API",
-    "description": "Google Trends API alternative. Get interest over time, interest by region, related queries, related topics and daily trending searches for any keyword, country, time range, category and Google property. Compare up to 5 terms. JSON, CSV or Excel.",
-    "version": "1.0",
+    "name": "source-probe",
+    "title": "Source probe",
+    "description": "Internal tool: checks which candidate data sources answer plain requests through each Apify Proxy group. The repository root builds this tool for now; each Actor also has its own folder.",
+    "version": "0.1",
     "buildTag": "latest",
-    "minMemoryMbytes": 256,
-    "maxMemoryMbytes": 1024,
-    "dockerContextDir": "../google-trends-scraper",
-    "dockerfile": "../google-trends-scraper/Dockerfile",
-    "input": "../google-trends-scraper/.actor/input_schema.json",
-    "storages": {
-        "dataset": "../google-trends-scraper/.actor/dataset_schema.json"
-    },
-    "readme": "../google-trends-scraper/README.md"
+    "dockerContextDir": "../source-probe",
+    "dockerfile": "../source-probe/Dockerfile",
+    "input": "../source-probe/.actor/input_schema.json"
 }

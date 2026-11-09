@@ -1,0 +1,16 @@
+{
+    "name": "source-probe",
+    "version": "1.0.0",
+    "description": "Checks whether candidate data sources answer plain HTTP requests through each Apify Proxy group, before an Actor is built for them.",
+    "type": "module",
+    "main": "src/main.js",
+    "private": true,
+    "scripts": {
+        "start": "node src/main.js"
+    },
+    "dependencies": {
+        "apify": "^3.4.2",
+        "got-scraping": "^4.1.1"
+    },
+    "license": "Apache-2.0"
+}
