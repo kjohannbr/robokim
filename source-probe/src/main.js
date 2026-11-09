@@ -85,6 +85,10 @@ for (const group of proxyGroups) {
         if (group === 'GOOGLE_SERP' && !/^http:\/\/www\.google\./.test(target.url)) return;
         const result = await probe(target, group, proxyConfiguration);
         log.info(`${result.verdict.padEnd(8)} ${target.label} via ${group} (${result.okAttempts}) statuses=${result.tries.map((t) => t.status ?? t.error).join(',')}`);
+        for (const t of result.tries) {
+            if (t.status !== 200) continue;
+            log.info(`    detail ${target.label}/${group}: ${t.bytes} bytes, expectedText=${t.hasExpectedText}, markers=[${t.blockMarkers.join('|')}], title="${t.title}", finalUrl=${t.finalUrl}`);
+        }
         summary.push({ target: target.label, proxyGroup: group, verdict: result.verdict, okAttempts: result.okAttempts });
         await Actor.pushData({ target: target.label, url: target.url, proxyGroup: group, ...result });
     }));
