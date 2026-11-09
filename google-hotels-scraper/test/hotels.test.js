@@ -62,6 +62,7 @@ test('reads organic hotels from a real page and skips ads', () => {
     assert.equal(h.website, 'https://www.glint-stay.com/');
     assert.ok(h.latitude > 48 && h.latitude < 49);
     assert.ok(h.images.length > 0 && h.images[0].startsWith('https://'));
+    assert.equal(h.thumbnail, h.images[0]);
     assert.match(h.googleHotelsUrl, /^https:\/\/www\.google\.com\/travel\/hotels\/entity\/\S+$/);
     const airport = h.nearbyPlaces.find((p) => p.category === 'airport');
     assert.deepEqual(airport.travelTimes.map((t) => t.mode), ['driving', 'transit']);

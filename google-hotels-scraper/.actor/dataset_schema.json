@@ -4,77 +4,297 @@
         "$schema": "http://json-schema.org/draft-07/schema#",
         "type": "object",
         "properties": {
-            "searchInput": { "type": "string", "description": "Location or query from the input." },
-            "searchQuery": { "type": "string", "description": "Exact text searched on Google Hotels, including dates and guests." },
-            "position": { "type": "integer", "description": "Position of the hotel in the Google results." },
-            "name": { "type": "string" },
-            "hotelClass": { "type": ["string", "null"], "description": "Star class label, e.g. 3-star hotel." },
-            "stars": { "type": ["integer", "null"] },
-            "rating": { "type": ["number", "null"], "description": "Guest rating from 1 to 5." },
-            "reviewCount": { "type": ["integer", "null"] },
-            "ratingBreakdown": { "type": ["object", "null"], "description": "Percent and count of reviews for each star level." },
-            "pricePerNight": { "type": ["number", "null"], "description": "Lowest price per night shown by Google, rounded." },
-            "pricePerNightExact": { "type": ["number", "null"] },
-            "priceText": { "type": ["string", "null"], "description": "Price as shown, with currency symbol." },
-            "currency": { "type": ["string", "null"], "description": "ISO currency code, e.g. USD." },
-            "isAvailable": { "type": "boolean", "description": "False when Google shows no price for these dates." },
-            "checkIn": { "type": ["string", "null"], "description": "Check-in date Google used (YYYY-MM-DD)." },
-            "checkOut": { "type": ["string", "null"] },
-            "nights": { "type": ["integer", "null"] },
-            "datesMatched": { "type": ["boolean", "null"], "description": "Whether Google used the requested dates. Null when no dates were requested." },
-            "description": { "type": ["string", "null"] },
-            "latitude": { "type": ["number", "null"] },
-            "longitude": { "type": ["number", "null"] },
-            "countryCode": { "type": ["string", "null"] },
-            "checkInTime": { "type": ["string", "null"] },
-            "checkOutTime": { "type": ["string", "null"] },
-            "website": { "type": ["string", "null"] },
-            "nearbyPlaces": { "type": "array", "description": "Nearby attractions, airports, restaurants and stations with travel times." },
-            "images": { "type": "array", "items": { "type": "string" } },
-            "googleHotelsUrl": { "type": ["string", "null"], "description": "The hotel's page on Google Hotels." },
-            "totalResultsForSearch": { "type": ["integer", "null"], "description": "How many properties Google reports for the search." },
-            "scrapedAt": { "type": "string" }
+            "searchInput": {
+                "type": "string",
+                "description": "Location or query from the input."
+            },
+            "searchQuery": {
+                "type": "string",
+                "description": "Exact text searched on Google Hotels, including dates and guests."
+            },
+            "position": {
+                "type": "integer",
+                "description": "Position of the hotel in the Google results."
+            },
+            "name": {
+                "type": "string"
+            },
+            "hotelClass": {
+                "type": [
+                    "string",
+                    "null"
+                ],
+                "description": "Star class label, e.g. 3-star hotel."
+            },
+            "stars": {
+                "type": [
+                    "integer",
+                    "null"
+                ]
+            },
+            "rating": {
+                "type": [
+                    "number",
+                    "null"
+                ],
+                "description": "Guest rating from 1 to 5."
+            },
+            "reviewCount": {
+                "type": [
+                    "integer",
+                    "null"
+                ]
+            },
+            "ratingBreakdown": {
+                "type": [
+                    "object",
+                    "null"
+                ],
+                "description": "Percent and count of reviews for each star level."
+            },
+            "pricePerNight": {
+                "type": [
+                    "number",
+                    "null"
+                ],
+                "description": "Lowest price per night shown by Google, rounded."
+            },
+            "pricePerNightExact": {
+                "type": [
+                    "number",
+                    "null"
+                ]
+            },
+            "priceText": {
+                "type": [
+                    "string",
+                    "null"
+                ],
+                "description": "Price as shown, with currency symbol."
+            },
+            "currency": {
+                "type": [
+                    "string",
+                    "null"
+                ],
+                "description": "ISO currency code, e.g. USD."
+            },
+            "isAvailable": {
+                "type": "boolean",
+                "description": "False when Google shows no price for these dates."
+            },
+            "checkIn": {
+                "type": [
+                    "string",
+                    "null"
+                ],
+                "description": "Check-in date Google used (YYYY-MM-DD)."
+            },
+            "checkOut": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "nights": {
+                "type": [
+                    "integer",
+                    "null"
+                ]
+            },
+            "datesMatched": {
+                "type": [
+                    "boolean",
+                    "null"
+                ],
+                "description": "Whether Google used the requested dates. Null when no dates were requested."
+            },
+            "description": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "latitude": {
+                "type": [
+                    "number",
+                    "null"
+                ]
+            },
+            "longitude": {
+                "type": [
+                    "number",
+                    "null"
+                ]
+            },
+            "countryCode": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "checkInTime": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "checkOutTime": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "website": {
+                "type": [
+                    "string",
+                    "null"
+                ]
+            },
+            "nearbyPlaces": {
+                "type": "array",
+                "description": "Nearby attractions, airports, restaurants and stations with travel times."
+            },
+            "images": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "googleHotelsUrl": {
+                "type": [
+                    "string",
+                    "null"
+                ],
+                "description": "The hotel's page on Google Hotels."
+            },
+            "totalResultsForSearch": {
+                "type": [
+                    "integer",
+                    "null"
+                ],
+                "description": "How many properties Google reports for the search."
+            },
+            "scrapedAt": {
+                "type": "string"
+            },
+            "thumbnail": {
+                "type": [
+                    "string",
+                    "null"
+                ],
+                "description": "Main photo of the hotel."
+            }
         }
     },
     "views": {
         "overview": {
             "title": "Overview",
             "transformation": {
-                "fields": ["images", "name", "searchInput", "pricePerNight", "currency", "rating", "reviewCount", "stars", "checkIn", "checkOut", "googleHotelsUrl"]
+                "fields": [
+                    "thumbnail",
+                    "name",
+                    "searchInput",
+                    "pricePerNight",
+                    "currency",
+                    "rating",
+                    "reviewCount",
+                    "stars",
+                    "checkIn",
+                    "checkOut",
+                    "googleHotelsUrl"
+                ]
             },
             "display": {
                 "component": "table",
                 "properties": {
-                    "images": { "label": "Photo", "format": "image" },
-                    "name": { "label": "Hotel" },
-                    "searchInput": { "label": "Search" },
-                    "pricePerNight": { "label": "Price / night", "format": "number" },
-                    "currency": { "label": "Currency" },
-                    "rating": { "label": "Rating", "format": "number" },
-                    "reviewCount": { "label": "Reviews", "format": "number" },
-                    "stars": { "label": "Stars", "format": "number" },
-                    "checkIn": { "label": "Check-in" },
-                    "checkOut": { "label": "Check-out" },
-                    "googleHotelsUrl": { "label": "Google Hotels", "format": "link" }
+                    "thumbnail": {
+                        "label": "Photo",
+                        "format": "image"
+                    },
+                    "name": {
+                        "label": "Hotel"
+                    },
+                    "searchInput": {
+                        "label": "Search"
+                    },
+                    "pricePerNight": {
+                        "label": "Price / night",
+                        "format": "number"
+                    },
+                    "currency": {
+                        "label": "Currency"
+                    },
+                    "rating": {
+                        "label": "Rating",
+                        "format": "number"
+                    },
+                    "reviewCount": {
+                        "label": "Reviews",
+                        "format": "number"
+                    },
+                    "stars": {
+                        "label": "Stars",
+                        "format": "number"
+                    },
+                    "checkIn": {
+                        "label": "Check-in"
+                    },
+                    "checkOut": {
+                        "label": "Check-out"
+                    },
+                    "googleHotelsUrl": {
+                        "label": "Google Hotels",
+                        "format": "link"
+                    }
                 }
             }
         },
         "location": {
             "title": "Location",
             "transformation": {
-                "fields": ["name", "latitude", "longitude", "countryCode", "website", "checkInTime", "checkOutTime", "nearbyPlaces"]
+                "fields": [
+                    "name",
+                    "latitude",
+                    "longitude",
+                    "countryCode",
+                    "website",
+                    "checkInTime",
+                    "checkOutTime",
+                    "nearbyPlaces"
+                ]
             },
             "display": {
                 "component": "table",
                 "properties": {
-                    "name": { "label": "Hotel" },
-                    "latitude": { "label": "Latitude", "format": "number" },
-                    "longitude": { "label": "Longitude", "format": "number" },
-                    "countryCode": { "label": "Country" },
-                    "website": { "label": "Website", "format": "link" },
-                    "checkInTime": { "label": "Check-in time" },
-                    "checkOutTime": { "label": "Check-out time" },
-                    "nearbyPlaces": { "label": "Nearby", "format": "array" }
+                    "name": {
+                        "label": "Hotel"
+                    },
+                    "latitude": {
+                        "label": "Latitude",
+                        "format": "number"
+                    },
+                    "longitude": {
+                        "label": "Longitude",
+                        "format": "number"
+                    },
+                    "countryCode": {
+                        "label": "Country"
+                    },
+                    "website": {
+                        "label": "Website",
+                        "format": "link"
+                    },
+                    "checkInTime": {
+                        "label": "Check-in time"
+                    },
+                    "checkOutTime": {
+                        "label": "Check-out time"
+                    },
+                    "nearbyPlaces": {
+                        "label": "Nearby",
+                        "format": "array"
+                    }
                 }
             }
         }

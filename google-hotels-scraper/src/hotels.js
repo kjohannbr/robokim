@@ -137,6 +137,7 @@ export function parseHotel(h) {
         checkOutTime: clean(get(h, 2, 17, 1)) ?? null,
         website: get(h, 2, 29, 2) ?? null,
         nearbyPlaces: parseNearby(get(h, 2, 19)),
+        thumbnail: images[0] ?? null,
         images,
         googleHotelsUrl: entityToken ? `${ORIGIN}/travel/hotels/entity/${entityToken}` : null,
         entityToken,
