@@ -1,0 +1,123 @@
+{
+    "title": "Google Hotels Scraper input",
+    "description": "Enter cities or destinations and, optionally, your travel dates. Each hotel found becomes one result with its price per night, rating, reviews and location.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "locations": {
+            "title": "Locations",
+            "type": "array",
+            "description": "Cities, neighborhoods or destinations, for example \"Paris\", \"Lisbon\" or \"Times Square, New York\". Each location becomes one Google Hotels search.",
+            "editor": "stringList",
+            "prefill": [
+                "Paris"
+            ],
+            "default": [
+                "Paris"
+            ]
+        },
+        "searchQueries": {
+            "title": "Custom search queries",
+            "type": "array",
+            "description": "Optional. Free-text Google Hotels searches, for example \"hotels near Eiffel Tower\" or \"pet friendly hotels in Austin\". Dates and guests below are added automatically.",
+            "editor": "stringList"
+        },
+        "checkInDate": {
+            "title": "Check-in date",
+            "type": "string",
+            "description": "Optional. Format YYYY-MM-DD. Leave both dates empty to use Google's default (tonight, one night).",
+            "editor": "datepicker",
+            "pattern": "^(\\d{4}-\\d{2}-\\d{2})?$",
+            "sectionCaption": "Dates and guests"
+        },
+        "checkOutDate": {
+            "title": "Check-out date",
+            "type": "string",
+            "description": "Optional. Format YYYY-MM-DD. Must be after the check-in date.",
+            "editor": "datepicker",
+            "pattern": "^(\\d{4}-\\d{2}-\\d{2})?$"
+        },
+        "adults": {
+            "title": "Adults",
+            "type": "integer",
+            "description": "Number of adult guests.",
+            "minimum": 1,
+            "maximum": 12,
+            "default": 2
+        },
+        "maxResultsPerSearch": {
+            "title": "Max hotels per search",
+            "type": "integer",
+            "description": "Maximum number of hotels saved for each location or query. Version 1 reads the first Google Hotels results page, which shows about 18-20 hotels. Add more specific locations (neighborhoods, landmarks) to get more hotels.",
+            "minimum": 1,
+            "maximum": 20,
+            "default": 20,
+            "sectionCaption": "Results and filters"
+        },
+        "minRating": {
+            "title": "Minimum guest rating",
+            "type": "number",
+            "description": "Optional. Keep only hotels rated at least this much (1-5), for example 4.2.",
+            "minimum": 0,
+            "maximum": 5
+        },
+        "minStars": {
+            "title": "Minimum star class",
+            "type": "integer",
+            "description": "Optional. Keep only hotels with at least this hotel class (1-5 stars). Hotels without a star class are left out when this is set.",
+            "minimum": 0,
+            "maximum": 5
+        },
+        "maxPricePerNight": {
+            "title": "Maximum price per night",
+            "type": "integer",
+            "description": "Optional. Keep only hotels at or below this price per night, in the currency of the results (US dollars with the default proxy).",
+            "minimum": 0
+        },
+        "onlyAvailable": {
+            "title": "Only hotels with a price",
+            "type": "boolean",
+            "description": "Leave out hotels that show no price for your dates (usually sold out).",
+            "default": false
+        },
+        "language": {
+            "title": "Language",
+            "type": "string",
+            "description": "Language of descriptions and labels, as a Google language code such as en, pt-BR, de or fr.",
+            "editor": "textfield",
+            "default": "en",
+            "sectionCaption": "Advanced"
+        },
+        "maxConcurrency": {
+            "title": "Max concurrency",
+            "type": "integer",
+            "description": "How many searches run at the same time.",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 3
+        },
+        "maxRetries": {
+            "title": "Max retries per search",
+            "type": "integer",
+            "description": "How many times a search is retried, with an increasing pause and a new proxy IP, when Google answers with an error or an unexpected page.",
+            "minimum": 0,
+            "maximum": 10,
+            "default": 5
+        },
+        "proxyConfiguration": {
+            "title": "Proxy configuration",
+            "type": "object",
+            "description": "Google Hotels shows prices in the currency of the visitor's country, so the proxy country sets the currency: United States = US dollars, Germany = euros, United Kingdom = pounds.",
+            "editor": "proxy",
+            "prefill": {
+                "useApifyProxy": true,
+                "apifyProxyCountry": "US"
+            },
+            "default": {
+                "useApifyProxy": true,
+                "apifyProxyCountry": "US"
+            }
+        }
+    },
+    "required": []
+}

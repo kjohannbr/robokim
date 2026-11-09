@@ -1,0 +1,19 @@
+{
+    "name": "google-hotels-scraper",
+    "version": "1.0.0",
+    "description": "Google Hotels scraper: hotel prices per night, ratings, reviews, stars, location, photos and nearby places for any destination and dates.",
+    "type": "module",
+    "main": "src/main.js",
+    "engines": {
+        "node": ">=20"
+    },
+    "scripts": {
+        "start": "node src/main.js",
+        "test": "node --test test/*.test.js"
+    },
+    "dependencies": {
+        "apify": "^3.4.2",
+        "got-scraping": "^4.1.1"
+    },
+    "license": "Apache-2.0"
+}
