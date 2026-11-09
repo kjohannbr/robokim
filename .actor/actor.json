@@ -1,0 +1,16 @@
+{
+    "actorSpecification": 1,
+    "name": "google-trends-scraper",
+    "title": "Google Trends Scraper & API",
+    "description": "Google Trends API alternative. Get interest over time, interest by region, related queries, related topics and daily trending searches for any keyword, country, time range, category and Google property. Compare up to 5 terms. JSON, CSV or Excel.",
+    "version": "1.0",
+    "buildTag": "latest",
+    "minMemoryMbytes": 256,
+    "maxMemoryMbytes": 1024,
+    "input": "./input_schema.json",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md"
+}

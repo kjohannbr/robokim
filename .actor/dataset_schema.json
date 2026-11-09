@@ -1,0 +1,85 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+            "type": { "type": "string", "enum": ["keyword", "comparison", "trendingNow"], "description": "keyword = one term, comparison = 2-5 terms on one scale, trendingNow = a trending search from the daily feed." },
+            "searchTerms": { "type": "array", "items": { "type": "string" }, "description": "Terms of this Google Trends search." },
+            "keyword": { "type": ["string", "null"], "description": "The term, for single-keyword results." },
+            "geo": { "type": "string", "description": "Country or region code, or WORLDWIDE." },
+            "timeRange": { "type": "string", "description": "Requested time range, e.g. today 12-m." },
+            "resolvedTimeRange": { "type": ["string", "null"], "description": "Exact dates Google Trends used." },
+            "category": { "type": "integer" },
+            "property": { "type": "string", "description": "web, images, news, froogle (Google Shopping) or youtube." },
+            "trendsUrl": { "type": "string", "description": "Link to the same search on the Google Trends website." },
+            "summary": { "type": ["object", "null"], "description": "Per term: average, peak, latest value and recent direction (rising, falling, stable)." },
+            "interestOverTime": { "type": "array", "description": "Points with date, isPartial and a 0-100 value per term." },
+            "interestByRegion": { "type": "array", "description": "Regions with a 0-100 value per term." },
+            "relatedQueries": { "type": "object", "description": "Top and rising related queries (per term in comparisons)." },
+            "relatedTopics": { "type": "object", "description": "Top and rising related topics (per term in comparisons)." },
+            "title": { "type": ["string", "null"], "description": "Trending search (trendingNow only)." },
+            "approxTraffic": { "type": ["string", "null"], "description": "Approximate searches, e.g. 200K+ (trendingNow only)." },
+            "news": { "type": "array", "description": "News articles linked to the trending search (trendingNow only)." },
+            "errors": { "type": "array", "description": "Sections that could not be collected, if any." },
+            "scrapedAt": { "type": "string" }
+        }
+    },
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": ["type", "searchTerms", "geo", "timeRange", "resolvedTimeRange", "summary", "trendsUrl", "scrapedAt"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "type": { "label": "Type" },
+                    "searchTerms": { "label": "Terms" },
+                    "geo": { "label": "Geo" },
+                    "timeRange": { "label": "Time range" },
+                    "resolvedTimeRange": { "label": "Dates" },
+                    "summary": { "label": "Summary" },
+                    "trendsUrl": { "label": "Google Trends", "format": "link" },
+                    "scrapedAt": { "label": "Scraped at", "format": "date" }
+                }
+            }
+        },
+        "interestOverTime": {
+            "title": "Interest over time",
+            "transformation": {
+                "fields": ["keyword", "geo", "interestOverTime"],
+                "unwind": ["interestOverTime"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "keyword": { "label": "Keyword" },
+                    "geo": { "label": "Geo" },
+                    "date": { "label": "Date", "format": "date" },
+                    "formattedTime": { "label": "Period" },
+                    "value": { "label": "Interest (0-100)", "format": "number" },
+                    "values": { "label": "Values per term", "format": "object" },
+                    "isPartial": { "label": "Partial", "format": "boolean" }
+                }
+            }
+        },
+        "trendingNow": {
+            "title": "Trending now",
+            "transformation": {
+                "fields": ["country", "rank", "title", "approxTraffic", "startedAt", "news"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "country": { "label": "Country" },
+                    "rank": { "label": "Rank", "format": "number" },
+                    "title": { "label": "Trending search" },
+                    "approxTraffic": { "label": "Searches" },
+                    "startedAt": { "label": "Started", "format": "date" },
+                    "news": { "label": "News", "format": "array" }
+                }
+            }
+        }
+    }
+}

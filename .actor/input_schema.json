@@ -1,0 +1,139 @@
+{
+    "title": "Google Trends Scraper input",
+    "description": "Enter keywords or Google Trends URLs. Each keyword produces one result with interest over time, interest by region, related queries and related topics.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "searchTerms": {
+            "title": "Search terms",
+            "type": "array",
+            "description": "Keywords to look up on Google Trends, for example \"web scraping\" or \"bitcoin\". Each term becomes one result, unless you turn on \"Compare terms\".",
+            "editor": "stringList",
+            "prefill": ["web scraping"],
+            "default": ["web scraping"]
+        },
+        "startUrls": {
+            "title": "Google Trends URLs",
+            "type": "array",
+            "description": "Optional. Paste Google Trends explore URLs (https://trends.google.com/trends/explore?q=...). The keywords, country, date, category and property are read from each URL, and terms separated by commas in the URL are compared together.",
+            "editor": "requestListSources",
+            "sectionCaption": "More ways to add searches"
+        },
+        "compareTerms": {
+            "title": "Compare terms",
+            "type": "boolean",
+            "description": "Compare the search terms against each other on one shared 0-100 scale, like typing several terms on the Google Trends website. Terms are grouped in batches of up to 5 (the Google Trends limit), and each batch becomes one result.",
+            "default": false
+        },
+        "geo": {
+            "title": "Country or region",
+            "type": "string",
+            "description": "Two-letter country code (US, BR, DE), or a region code such as US-CA or BR-SP. Leave empty for worldwide.",
+            "editor": "textfield",
+            "pattern": "^([A-Za-z]{2}(-[A-Za-z0-9]{1,3}){0,2})?$",
+            "default": "",
+            "sectionCaption": "Search settings"
+        },
+        "timeRange": {
+            "title": "Time range",
+            "type": "string",
+            "description": "Period to analyze. Ignored when you fill in \"Custom time range\".",
+            "editor": "select",
+            "enum": ["now 1-H", "now 4-H", "now 1-d", "now 7-d", "today 1-m", "today 3-m", "today 12-m", "today 5-y", "all"],
+            "enumTitles": ["Past hour", "Past 4 hours", "Past day", "Past 7 days", "Past 30 days", "Past 90 days", "Past 12 months", "Past 5 years", "2004 - present"],
+            "default": "today 12-m"
+        },
+        "customTimeRange": {
+            "title": "Custom time range",
+            "type": "string",
+            "description": "Optional. Two dates separated by a space, in YYYY-MM-DD format, for example \"2024-01-01 2024-12-31\". Overrides \"Time range\".",
+            "editor": "textfield",
+            "pattern": "^(\\d{4}-\\d{2}-\\d{2} \\d{4}-\\d{2}-\\d{2})?$"
+        },
+        "category": {
+            "title": "Category",
+            "type": "string",
+            "description": "Limit results to a Google Trends category.",
+            "editor": "select",
+            "enum": ["0", "3", "47", "44", "22", "12", "5", "7", "71", "8", "45", "65", "11", "13", "958", "19", "16", "299", "14", "66", "29", "533", "174", "18", "20", "67"],
+            "enumTitles": ["All categories", "Arts & Entertainment", "Autos & Vehicles", "Beauty & Fitness", "Books & Literature", "Business & Industrial", "Computers & Electronics", "Finance", "Food & Drink", "Games", "Health", "Hobbies & Leisure", "Home & Garden", "Internet & Telecom", "Jobs & Education", "Law & Government", "News", "Online Communities", "People & Society", "Pets & Animals", "Real Estate", "Reference", "Science", "Shopping", "Sports", "Travel"],
+            "default": "0"
+        },
+        "property": {
+            "title": "Google property",
+            "type": "string",
+            "description": "Which Google search to measure: regular web search, image search, news search, Google Shopping or YouTube search.",
+            "editor": "select",
+            "enum": ["web", "images", "news", "froogle", "youtube"],
+            "enumTitles": ["Web search", "Image search", "News search", "Google Shopping", "YouTube search"],
+            "default": "web"
+        },
+        "sections": {
+            "title": "Data to collect",
+            "type": "array",
+            "description": "Which parts of the Google Trends page to collect. Fewer sections make the run faster.",
+            "editor": "select",
+            "items": {
+                "type": "string",
+                "enum": ["interestOverTime", "interestByRegion", "relatedQueries", "relatedTopics"],
+                "enumTitles": ["Interest over time", "Interest by region", "Related queries", "Related topics"]
+            },
+            "default": ["interestOverTime", "interestByRegion", "relatedQueries", "relatedTopics"]
+        },
+        "regionResolution": {
+            "title": "Region level",
+            "type": "string",
+            "description": "Level of detail for \"Interest by region\". Automatic uses countries for worldwide searches and states or provinces for a single country. Metro areas (DMA) exist only for the US.",
+            "editor": "select",
+            "enum": ["AUTO", "COUNTRY", "REGION", "DMA", "CITY"],
+            "enumTitles": ["Automatic", "Countries", "States / provinces", "Metro areas (US only)", "Cities"],
+            "default": "AUTO"
+        },
+        "includeLowVolumeRegions": {
+            "title": "Include low search volume regions",
+            "type": "boolean",
+            "description": "Also return regions with little search volume, which Google Trends hides by default.",
+            "default": false
+        },
+        "language": {
+            "title": "Language",
+            "type": "string",
+            "description": "Language of topic names and labels, as a Google language code such as en-US, pt-BR or de.",
+            "editor": "textfield",
+            "default": "en-US"
+        },
+        "trendingNowCountries": {
+            "title": "Trending now: countries",
+            "type": "array",
+            "description": "Optional. Two-letter country codes (US, BR, IN...) to also collect today's trending searches with approximate traffic and related news articles. Each trending search becomes one result.",
+            "editor": "stringList",
+            "sectionCaption": "Trending searches"
+        },
+        "maxConcurrency": {
+            "title": "Max concurrency",
+            "type": "integer",
+            "description": "How many searches run at the same time. Google Trends limits fast traffic, so low values are more reliable.",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 2,
+            "sectionCaption": "Advanced"
+        },
+        "maxRetries": {
+            "title": "Max retries per request",
+            "type": "integer",
+            "description": "How many times a request is retried, with an increasing pause, when Google Trends answers \"too many requests\" or another temporary error.",
+            "minimum": 0,
+            "maximum": 15,
+            "default": 6
+        },
+        "proxyConfiguration": {
+            "title": "Proxy configuration",
+            "type": "object",
+            "description": "Proxy servers used for the requests. Apify Proxy is recommended.",
+            "editor": "proxy",
+            "prefill": { "useApifyProxy": true },
+            "default": { "useApifyProxy": true }
+        }
+    },
+    "required": []
+}
